@@ -36,7 +36,10 @@ jobs:
 
       - name: Make Gradle executable
         run: chmod +x ./gradlew
-
+        
+      - name: Configure Module Index
+        run: |
+          echo "MODULE_INDEX_URL=https://raw.githubusercontent.com/KissAnotherDay/Geolier2-8spine/main/index.json" > local.properties
       - name: Build APK
         run: ./gradlew assembleProdRelease --stacktrace
 
