@@ -31,7 +31,7 @@ val localProps = Properties().apply {
 val moduleIndexUrl: String = localProps.getProperty("MODULE_INDEX_URL", "")
 
 android {
-    namespace = "com.music.bitchord"
+    namespace = "com.vise.music"
     compileSdk = 36
 
     defaultConfig {
