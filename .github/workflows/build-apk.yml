@@ -1,0 +1,47 @@
+name: Build BitChord APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK components
+        run: |
+          yes | sdkmanager --licenses || true
+          sdkmanager \
+            "platform-tools" \
+            "platforms;android-36" \
+            "build-tools;36.0.0" \
+            "cmake;3.22.1" \
+            "ndk;27.0.12077973"
+
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+
+      - name: Build APK
+        run: ./gradlew assembleProdRelease --stacktrace
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: BitChord-APK
+          path: app/build/outputs/apk/prod/release/*.apk
