@@ -22,7 +22,7 @@ object AppUpdateChecker {
     data class UpdateInfo(val version: String, val releaseUrl: String)
 
     private const val LATEST_RELEASE_URL =
-        "https://api.github.com/repos/kushagrasinghx/BitChord/releases/latest"
+        "https://api.github.com/repos/Rafigibran/BitChord/releases/latest"
 
     private val json = Json { ignoreUnknownKeys = true }
 
