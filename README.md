@@ -3,7 +3,7 @@
 <br/>
 <br/>
 
-<img src="Logo.png" alt="ViseMusic app icon" width="200" />
+<img src="LogoVise.png" alt="ViseMusic app icon" width="200" />
 
 # ViseMusic
 
