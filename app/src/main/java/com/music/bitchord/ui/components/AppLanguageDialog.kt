@@ -41,6 +41,8 @@ import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
 import dev.chrisbanes.haze.materials.HazeMaterials
 import java.util.Locale
+import android.app.Activity
+import androidx.compose.ui.platform.LocalContext
 
 /** Language tag (matches a values-&lt;tag&gt; resource folder) paired with its display-name string. */
 data class AppLanguage(val tag: String, val nameRes: Int)
@@ -74,8 +76,9 @@ fun AppLanguageDialog(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val reduceDynamicBlur by AppSettings.reduceDynamicBlur.collectAsStateWithLifecycle()
-    val shape = RoundedCornerShape(ALERT_CORNER)
+val reduceDynamicBlur by AppSettings.reduceDynamicBlur.collectAsStateWithLifecycle()
+val context = LocalContext.current
+val shape = RoundedCornerShape(ALERT_CORNER)
     val currentLanguage = AppCompatDelegate.getApplicationLocales().get(0)?.language
         ?: Locale.getDefault().language
 
@@ -145,11 +148,13 @@ fun AppLanguageDialog(
                     language = language,
                     selected = language.tag == currentLanguage,
                     onClick = {
-                        AppCompatDelegate.setApplicationLocales(
-                            LocaleListCompat.forLanguageTags(language.tag),
-                        )
-                        onDismiss()
-                    },
+    AppCompatDelegate.setApplicationLocales(
+        LocaleListCompat.forLanguageTags(language.tag),
+    )
+    onDismiss()
+
+    (context as? Activity)?.recreate()
+},
                 )
             }
         }
