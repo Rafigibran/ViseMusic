@@ -349,7 +349,7 @@ private fun DownloadManagerRow(
                         },
                     )
                 }
-                is DownloadProgress.Done -> RowStatus("Saved to Music/BitChord")
+                is DownloadProgress.Done -> RowStatus("Saved to Music/ViseMusic")
                 is DownloadProgress.Failed ->
                     RowStatus(progress.reason, MaterialTheme.colorScheme.error)
             }

@@ -1473,7 +1473,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 browseId == "local:downloads" -> {
                     val context = getApplication<Application>()
                     val songs = LocalMediaRepository.getDownloadedSongs(context)
-                    if (songs.isEmpty()) UiState.Error("No downloaded tracks in Music/BitChord")
+                    if (songs.isEmpty()) UiState.Error("No downloaded tracks in Music/ViseMusic")
                     else UiState.Success(songs)
                 }
                 browseId == "local:all" -> {
@@ -1569,7 +1569,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 }
                 browseId == "local:downloads" -> {
                     val songs = LocalMediaRepository.getDownloadedSongs(context)
-                    if (songs.isEmpty()) UiState.Error("No downloaded tracks in Music/BitChord")
+                    if (songs.isEmpty()) UiState.Error("No downloaded tracks in Music/ViseMusic")
                     else UiState.Success(songs)
                 }
                 browseId == "local:all" -> {
@@ -1715,7 +1715,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 }
                 browseId == "local:downloads" -> runCatching {
                     LocalMediaRepository.getDownloadedSongs(context)
-                        .ifEmpty { error("No downloaded tracks in Music/BitChord") }
+                        .ifEmpty { error("No downloaded tracks in Music/ViseMusic") }
                 }
                 browseId == "local:all" -> runCatching {
                     if (!LocalMediaRepository.hasStoragePermission(context)) {

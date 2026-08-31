@@ -52,10 +52,10 @@ import java.util.Locale
  */
 object DownloadStore {
 
-    private const val TAG = "BitChord"
+    private const val TAG = "ViseMusic"
 
     /** The subfolder of Music that everything lands in. */
-    const val FOLDER = "BitChord"
+    const val FOLDER = "ViseMusic"
 
     private val relativePath = "${Environment.DIRECTORY_MUSIC}/$FOLDER"
 
